@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+  .grid {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .glow1 {
+    position: absolute;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+    top: -80px; left: 150px;
+    border-radius: 50%;
+  }
+  .glow2 {
+    position: absolute;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(0,200,150,0.1) 0%, transparent 70%);
+    bottom: -50px; right: 120px;
+    border-radius: 50%;
+  }
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    padding: 0 80px;
+  }
+  .left {
+    flex: 1;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.3);
+    color: #a5b4fc;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  h1 span {
+    background: linear-gradient(90deg, #a5b4fc, #00c896);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    max-width: 400px;
+  }
+  .right {
+    width: 380px;
+  }
+  .chat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .chat-header {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .msg {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .msg-right {
+    flex-direction: row-reverse;
+  }
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .avatar-user {
+    background: rgba(99,102,241,0.3);
+  }
+  .avatar-bot {
+    background: rgba(0,200,150,0.3);
+  }
+  .bubble {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    max-width: 260px;
+  }
+  .bubble-user {
+    background: rgba(99,102,241,0.15);
+    color: rgba(255,255,255,0.8);
+    border-bottom-right-radius: 4px;
+  }
+  .bubble-bot {
+    background: rgba(0,200,150,0.1);
+    color: rgba(255,255,255,0.7);
+    border-bottom-left-radius: 4px;
+  }
+  .vote-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .vote-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .vote-yes {
+    background: rgba(0,200,150,0.2);
+    border: 1px solid rgba(0,200,150,0.3);
+    color: #00c896;
+  }
+  .vote-no {
+    background: rgba(255,100,100,0.1);
+    border: 1px solid rgba(255,100,100,0.2);
+    color: rgba(255,100,100,0.7);
+  }
+  .ton-badge {
+    position: absolute;
+    bottom: 30px;
+    left: 80px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ton-diamond {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #6366f1, #00c896);
+    clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 20% 100%, 0% 35%);
+  }
+  .live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #00c896;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+
+  <div class="content">
+    <div class="left">
+      <div class="badge">User-Facing AI Agent</div>
+      <h1>TON DAO<br><span>Agent</span></h1>
+      <p class="subtitle">Group treasury management via natural language. Multisig V2 on-chain. Non-custodial.</p>
+      <div style="margin-top: 20px; font-size: 14px; color: rgba(255,255,255,0.4);">
+        <span class="live-dot"></span> Live on Telegram — @ton_dao_agent_bot
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="chat">
+        <div class="chat-header">Telegram Group Chat</div>
+
+        <div class="msg msg-right">
+          <div class="avatar avatar-user">M</div>
+          <div class="bubble bubble-user">send 5 TON to @alice for design work</div>
+        </div>
+
+        <div class="msg">
+          <div class="avatar avatar-bot">D</div>
+          <div class="bubble bubble-bot">
+            Proposal #1 created<br>
+            Transfer 5 TON to @alice<br>
+            Reason: design work<br>
+            Needs 2/3 approvals
+            <div class="vote-row">
+              <div class="vote-btn vote-yes">Approve (1/3)</div>
+              <div class="vote-btn vote-no">Reject (0)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="msg msg-right">
+          <div class="avatar avatar-user" style="background: rgba(255,180,0,0.3);">B</div>
+          <div class="bubble bubble-user">/vote yes</div>
+        </div>
+
+        <div class="msg">
+          <div class="avatar avatar-bot">D</div>
+          <div class="bubble bubble-bot">Threshold reached! Executing on-chain...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ton-badge">
+    <div class="ton-diamond"></div>
+    Built on TON &middot; Multisig V2
+  </div>
+</body>
+</html>

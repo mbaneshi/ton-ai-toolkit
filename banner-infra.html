@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f3460 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+  .grid {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .glow1 {
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,136,255,0.15) 0%, transparent 70%);
+    top: -50px; right: 100px;
+    border-radius: 50%;
+  }
+  .glow2 {
+    position: absolute;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(0,200,150,0.1) 0%, transparent 70%);
+    bottom: -30px; left: 80px;
+    border-radius: 50%;
+  }
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    padding: 0 80px;
+  }
+  .left {
+    flex: 1;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(0,136,255,0.15);
+    border: 1px solid rgba(0,136,255,0.3);
+    color: #4da6ff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  h1 span {
+    background: linear-gradient(90deg, #4da6ff, #00c896);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    max-width: 420px;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px 24px;
+    width: 340px;
+    backdrop-filter: blur(10px);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #4da6ff;
+    margin-bottom: 6px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+  }
+  .stat-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 6px;
+  }
+  .stat {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+  .stat strong {
+    color: #00c896;
+    font-weight: 600;
+  }
+  .ton-badge {
+    position: absolute;
+    bottom: 30px;
+    left: 80px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ton-diamond {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #0088ff, #00c896);
+    clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 20% 100%, 0% 35%);
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+
+  <div class="content">
+    <div class="left">
+      <div class="badge">Agent Infrastructure</div>
+      <h1>TON AI<br><span>Toolkit</span></h1>
+      <p class="subtitle">NL-to-TON transaction SDK + 18-tool MCP server. Give any AI agent full blockchain access.</p>
+    </div>
+
+    <div class="right">
+      <div class="card">
+        <div class="card-title">@ton-intent/core</div>
+        <div class="card-desc">Natural language to TON transactions. Provider-agnostic, Zod-validated, &lt;5KB.</div>
+        <div class="stat-row">
+          <div class="stat"><strong>34</strong> tests</div>
+          <div class="stat"><strong>5</strong> action types</div>
+          <div class="stat"><strong>ESM+CJS</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">@ton-mcp/server</div>
+        <div class="card-desc">Read + write + wallet MCP server for TON. Claude Desktop, Cursor, any agent.</div>
+        <div class="stat-row">
+          <div class="stat"><strong>18</strong> tools</div>
+          <div class="stat"><strong>read+write</strong></div>
+          <div class="stat"><strong>rate limited</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Testnet Verified</div>
+        <div class="card-desc">Real transactions on TON testnet. Multisig V2, Jetton TEP-74, TON DNS.</div>
+        <div class="stat-row">
+          <div class="stat"><strong>Multisig V2</strong></div>
+          <div class="stat"><strong>TEP-74</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ton-badge">
+    <div class="ton-diamond"></div>
+    Built on TON
+  </div>
+</body>
+</html>
