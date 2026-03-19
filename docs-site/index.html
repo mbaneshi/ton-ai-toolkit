@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TON AI Toolkit — Documentation</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --border: rgba(255,255,255,0.08);
+    --text: rgba(255,255,255,0.85);
+    --text-dim: rgba(255,255,255,0.5);
+    --text-dimmer: rgba(255,255,255,0.3);
+    --accent: #4da6ff;
+    --green: #00c896;
+    --purple: #a5b4fc;
+    --code-bg: #1a1a28;
+    --max-w: 960px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-diamond {
+    width: 20px; height: 20px;
+    background: linear-gradient(135deg, var(--accent), var(--green));
+    clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 20% 100%, 0% 35%);
+  }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    color: var(--text-dim);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: white; text-decoration: none; }
+
+  /* Hero */
+  .hero {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(0,136,255,0.1);
+    border: 1px solid rgba(0,136,255,0.2);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--accent), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+  }
+  .btn-primary:hover { background: #6bb8ff; text-decoration: none; }
+  .btn-secondary {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); text-decoration: none; }
+
+  /* Section */
+  section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+  section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-top: 32px;
+  }
+  section > p {
+    color: var(--text-dim);
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 auto;
+    max-width: var(--max-w);
+  }
+
+  /* Cards grid */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(255,255,255,0.15); }
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* Code blocks */
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 16px 0;
+  }
+  code {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+  }
+  :not(pre) > code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .kw { color: #c792ea; }
+  .str { color: #c3e88d; }
+  .fn { color: #82aaff; }
+  .cm { color: rgba(255,255,255,0.3); }
+  .typ { color: #ffcb6b; }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    padding: 10px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  td code { color: var(--accent); }
+
+  /* Architecture */
+  .arch {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .arch pre {
+    background: transparent;
+    border: none;
+    display: inline-block;
+    text-align: left;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+
+  /* Footer */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--text-dimmer);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--text-dim); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 32px; }
+    .cards { grid-template-columns: 1fr; }
+    .nav-links { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="nav-diamond"></div>
+      TON AI Toolkit
+    </div>
+    <div class="nav-links">
+      <a href="#intent">Intent SDK</a>
+      <a href="#mcp">MCP Server</a>
+      <a href="#dao">DAO Agent</a>
+      <a href="https://github.com/mbaneshi/ton-ai-toolkit">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">AI Hackathon on TON</div>
+  <h1>TON AI <span>Toolkit</span></h1>
+  <p>Give any AI agent full TON blockchain access. Natural language intent parsing, 18-tool MCP server, and a live Telegram DAO bot.</p>
+  <div class="hero-actions">
+    <a href="https://github.com/mbaneshi/ton-ai-toolkit" class="btn btn-primary">View on GitHub</a>
+    <a href="https://t.me/ton_dao_agent_bot" class="btn btn-secondary">Try the Bot</a>
+    <a href="https://testnet.tonviewer.com/EQC_m634GEbepPiq-akl9LlV4UU48H93UzdAdwiio1phmzjA" class="btn btn-secondary">Testnet Proof</a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- Architecture -->
+<section>
+  <h2>Architecture</h2>
+  <p>Three layers working together — the DAO Agent uses both packages underneath.</p>
+  <div class="arch">
+<pre>
+&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+&#9474;          TON DAO Agent               &#9474;
+&#9474;    Telegram Bot + NL + Multisig V2   &#9474;
+&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+            &#9474;                  &#9474;
+      &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;    &#9484;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+      &#9474; Intent SDK &#9474;    &#9474; MCP Server    &#9474;
+      &#9474; NL &#8594; Cell  &#9474;    &#9474; 18 TON tools  &#9474;
+      &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;    &#9492;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+            &#9474;                  &#9474;
+            &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+                     &#9474;
+               TON Blockchain
+</pre>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">&#9889;</div>
+      <h4>@ton-intent/core</h4>
+      <p>Provider-agnostic NL-to-TON transaction SDK. Parse natural language, validate with Zod, build Cells. &lt;5KB.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#128268;</div>
+      <h4>@ton-mcp/server</h4>
+      <p>18-tool MCP server with read + write + wallet capabilities. Works with Claude Desktop, Cursor, any agent.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#129302;</div>
+      <h4>TON DAO Agent</h4>
+      <p>Telegram bot for group treasury management via natural language. On-chain Multisig V2, non-custodial.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Intent SDK -->
+<section id="intent">
+  <h2>@ton-intent/core</h2>
+  <p>Natural language to TON transactions in 3 lines. Provider-agnostic — swap Claude, GPT, or any custom LLM.</p>
+
+  <h3>Quick Start</h3>
+<pre><code><span class="kw">import</span> { IntentParser, TONTxBuilder, createAnthropicProvider } <span class="kw">from</span> <span class="str">'@ton-intent/core'</span>
+
+<span class="cm">// 3 lines: natural language → TON transaction</span>
+<span class="kw">const</span> parser = <span class="kw">new</span> <span class="fn">IntentParser</span>(<span class="fn">createAnthropicProvider</span>(process.env.<span class="typ">ANTHROPIC_API_KEY</span>))
+<span class="kw">const</span> intent = <span class="kw">await</span> parser.<span class="fn">parse</span>(<span class="str">"send 5 TON to EQD...abc for design work"</span>)
+<span class="kw">const</span> tx = <span class="kw">new</span> <span class="fn">TONTxBuilder</span>().<span class="fn">buildTransfer</span>(intent)
+<span class="cm">// tx = { to: Address, value: 5000000000n, body: Cell }</span></code></pre>
+
+  <h3>Supported Actions</h3>
+  <table>
+    <tr><th>Action</th><th>Description</th><th>Builder</th></tr>
+    <tr><td><code>transfer</code></td><td>Simple TON transfer</td><td><code>buildTransfer()</code></td></tr>
+    <tr><td><code>multisig_propose</code></td><td>Multisig V2 order creation</td><td><code>buildMultisigOrder()</code></td></tr>
+    <tr><td><code>jetton_transfer</code></td><td>Token transfer (TEP-74)</td><td><code>buildJettonTransfer()</code></td></tr>
+    <tr><td><code>stake</code></td><td>Staking / delegation</td><td>Planned</td></tr>
+  </table>
+
+  <h3>Provider-Agnostic</h3>
+<pre><code><span class="cm">// Anthropic Claude</span>
+<span class="kw">const</span> provider = <span class="fn">createAnthropicProvider</span>(<span class="str">'sk-ant-...'</span>)
+
+<span class="cm">// OpenAI GPT</span>
+<span class="kw">const</span> provider = <span class="fn">createOpenAIProvider</span>(<span class="str">'sk-...'</span>)
+
+<span class="cm">// Custom LLM</span>
+<span class="kw">const</span> provider: <span class="typ">ILLMProvider</span> = {
+  <span class="kw">async</span> <span class="fn">parseIntent</span>(input) {
+    <span class="kw">return</span> { action: <span class="str">'transfer'</span>, amount: <span class="str">'5000000000'</span>, confidence: <span class="typ">0.95</span>, raw: input }
+  }
+}</code></pre>
+
+  <h3>Validators</h3>
+<pre><code><span class="kw">import</span> { isValidTONAddress, validateAmount, normalizeAddress } <span class="kw">from</span> <span class="str">'@ton-intent/core'</span>
+
+<span class="fn">isValidTONAddress</span>(<span class="str">'EQD...'</span>)  <span class="cm">// true</span>
+<span class="fn">validateAmount</span>(<span class="str">'5.5'</span>)        <span class="cm">// { valid: true, nanoton: 5500000000n }</span>
+<span class="fn">normalizeAddress</span>(<span class="str">'EQD...'</span>)   <span class="cm">// raw format: '0:abc...'</span></code></pre>
+</section>
+
+<hr class="divider">
+
+<!-- MCP Server -->
+<section id="mcp">
+  <h2>@ton-mcp/server</h2>
+  <p>The only read + write + wallet MCP server for TON. 18 tools. Works with Claude Desktop, Cursor, and any MCP-compatible agent.</p>
+
+  <h3>Claude Desktop Setup</h3>
+<pre><code><span class="cm">// ~/Library/Application Support/Claude/claude_desktop_config.json</span>
+{
+  <span class="str">"mcpServers"</span>: {
+    <span class="str">"ton"</span>: {
+      <span class="str">"command"</span>: <span class="str">"npx"</span>,
+      <span class="str">"args"</span>: [<span class="str">"-y"</span>, <span class="str">"@ton-mcp/server"</span>],
+      <span class="str">"env"</span>: {
+        <span class="str">"TONCENTER_API_KEY"</span>: <span class="str">"your_key"</span>,
+        <span class="str">"NETWORK"</span>: <span class="str">"testnet"</span>
+      }
+    }
+  }
+}</code></pre>
+
+  <h3>Read Tools (no keys required)</h3>
+  <table>
+    <tr><th>Tool</th><th>Description</th></tr>
+    <tr><td><code>ton_get_balance</code></td><td>Get TON balance for any address</td></tr>
+    <tr><td><code>ton_get_transactions</code></td><td>Recent transactions for an address</td></tr>
+    <tr><td><code>ton_get_account_state</code></td><td>Account state, balance, code hash</td></tr>
+    <tr><td><code>ton_call_getter</code></td><td>Call contract getter methods</td></tr>
+    <tr><td><code>ton_get_jetton_balance</code></td><td>Get Jetton token balance</td></tr>
+    <tr><td><code>ton_resolve_dns</code></td><td>Resolve .ton domain to address</td></tr>
+    <tr><td><code>ton_get_nft_data</code></td><td>Get NFT item metadata</td></tr>
+    <tr><td><code>ton_decode_message</code></td><td>Decode BOC into readable format</td></tr>
+    <tr><td><code>ton_estimate_fees</code></td><td>Estimate transaction fees</td></tr>
+    <tr><td><code>ton_parse_address</code></td><td>Normalize to all address formats</td></tr>
+  </table>
+
+  <h3>Build Tools (construct transactions)</h3>
+  <table>
+    <tr><th>Tool</th><th>Description</th></tr>
+    <tr><td><code>ton_build_transfer</code></td><td>Build a TON transfer message Cell</td></tr>
+    <tr><td><code>ton_build_jetton_transfer</code></td><td>Build a Jetton transfer Cell (TEP-74)</td></tr>
+    <tr><td><code>ton_build_multisig_order</code></td><td>Build a Multisig V2 order Cell</td></tr>
+    <tr><td><code>ton_encode_comment</code></td><td>Encode text as a comment Cell</td></tr>
+    <tr><td><code>ton_build_state_init</code></td><td>Build StateInit for deployment</td></tr>
+  </table>
+
+  <h3>Wallet Tools (requires MNEMONIC)</h3>
+  <table>
+    <tr><th>Tool</th><th>Description</th></tr>
+    <tr><td><code>ton_sign_and_send</code></td><td>Sign and broadcast a transaction</td></tr>
+    <tr><td><code>ton_get_wallet_address</code></td><td>Get derived wallet address</td></tr>
+    <tr><td><code>ton_get_wallet_balance</code></td><td>Get own wallet balance</td></tr>
+  </table>
+
+  <h3>Security Model</h3>
+  <div class="cards">
+    <div class="card">
+      <h4>Gated Wallet</h4>
+      <p>Wallet tools only available when MNEMONIC env var is set. Mnemonic never exposed in responses.</p>
+    </div>
+    <div class="card">
+      <h4>Amount Limits</h4>
+      <p>Configurable MAX_SEND_TON (default: 1000). Dry-run mode logs instead of broadcasting.</p>
+    </div>
+    <div class="card">
+      <h4>Rate Limiting</h4>
+      <p>Token bucket at 100 req/min on read tools. Retry with exponential backoff on failures.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DAO Agent -->
+<section id="dao">
+  <h2>TON DAO Agent</h2>
+  <p>First AI bot that executes on-chain treasury management via natural language in Telegram. Non-custodial, Multisig V2.</p>
+
+  <h3>How It Works</h3>
+<pre><code><span class="cm">User:  "send 5 TON to @alice for design work"</span>
+           |
+           v
+   &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+   &#9474;  gramm&#89; Bot     &#9474;  Telegram interaction layer
+   &#9474;  NL Handler     &#9474;
+   &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+            |
+            v
+   &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+   &#9474;  Claude LLM     &#9474;  AI execution engine
+   &#9474;  Intent Parser   &#9474;
+   &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+            |  ProposalIntent
+            v
+   &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+   &#9474;  Multisig V2     &#9474;  TON trust + payments layer
+   &#9474;  On-chain Order  &#9474;
+   &#9474;  N-of-M signing  &#9474;
+   &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</code></pre>
+
+  <h3>Commands</h3>
+  <table>
+    <tr><th>Command</th><th>Description</th></tr>
+    <tr><td><code>/setup [threshold]</code></td><td>Initialize group multisig, register members</td></tr>
+    <tr><td><code>/propose [text]</code></td><td>Natural language proposal &rarr; on-chain order</td></tr>
+    <tr><td><code>/vote yes|no [id]</code></td><td>Sign or reject an order</td></tr>
+    <tr><td><code>/balance</code></td><td>Show group wallet balance + address</td></tr>
+    <tr><td><code>/proposals</code></td><td>List pending proposals with vote counts</td></tr>
+    <tr><td><code>/history</code></td><td>Past executed proposals</td></tr>
+  </table>
+
+  <h3>Natural Language Understanding</h3>
+  <p style="color: var(--text-dim); margin-bottom: 16px;">No commands needed — just talk naturally in the group:</p>
+  <div class="cards">
+    <div class="card">
+      <h4>"send 5 TON to @alice for design work"</h4>
+      <p>Creates a transfer proposal with amount, recipient, and reason auto-extracted.</p>
+    </div>
+    <div class="card">
+      <h4>"add @bob as a signer"</h4>
+      <p>Creates a membership proposal to add a new multisig signer.</p>
+    </div>
+    <div class="card">
+      <h4>"change threshold to 3"</h4>
+      <p>Creates a governance proposal to update the signing threshold.</p>
+    </div>
+  </div>
+
+  <h3>Agent-to-Agent API</h3>
+<pre><code><span class="cm">// External agents can submit proposals programmatically</span>
+<span class="fn">POST</span> /agent/propose
+{
+  <span class="str">"to"</span>: <span class="str">"EQ..."</span>,
+  <span class="str">"amount"</span>: <span class="str">"1.5"</span>,
+  <span class="str">"memo"</span>: <span class="str">"service payment"</span>,
+  <span class="str">"auth_token"</span>: <span class="str">"group_api_key"</span>
+}
+
+<span class="cm">// Agent registry — discover capabilities</span>
+<span class="fn">GET</span> /agent/info
+&#8594; {
+    <span class="str">"name"</span>: <span class="str">"TON DAO Agent"</span>,
+    <span class="str">"capabilities"</span>: [<span class="str">"multisig_transfer"</span>, <span class="str">"member_management"</span>],
+    <span class="str">"mcp_compatible"</span>: <span class="typ">true</span>
+  }</code></pre>
+</section>
+
+<hr class="divider">
+
+<!-- TON Integration -->
+<section>
+  <h2>TON Ecosystem Integration</h2>
+  <p>Deep, production-grade integration with TON blockchain primitives.</p>
+  <div class="cards">
+    <div class="card">
+      <h4>Multisig V2</h4>
+      <p>Official ton-blockchain/multisig-contract-v2. Correct TL-B opcodes (0xf718510f). Non-custodial N-of-M signing.</p>
+    </div>
+    <div class="card">
+      <h4>Jetton TEP-74</h4>
+      <p>Full token transfer support with proper opcode (0x0f8a7ea5). Balance queries, metadata reading.</p>
+    </div>
+    <div class="card">
+      <h4>TON DNS</h4>
+      <p>Native .ton domain resolution. Send to domain names instead of raw addresses.</p>
+    </div>
+    <div class="card">
+      <h4>NFT TEP-62</h4>
+      <p>NFT metadata reading and collection querying via MCP tools.</p>
+    </div>
+    <div class="card">
+      <h4>All Address Formats</h4>
+      <p>Raw (0:hex), bounceable (EQ...), non-bounceable (UQ...). Auto-normalization and validation.</p>
+    </div>
+    <div class="card">
+      <h4>TonCenter RPC</h4>
+      <p>Official RPC for testnet and mainnet. Rate limiting, retry with exponential backoff.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<footer>
+  <p>TON AI Toolkit &mdash; Built for the <a href="https://id.tg/contest/ai-hackathon">AI Hackathon on TON</a></p>
+  <p style="margin-top: 8px;">
+    <a href="https://github.com/mbaneshi/ton-ai-toolkit">GitHub</a> &middot;
+    <a href="https://t.me/ton_dao_agent_bot">Telegram Bot</a> &middot;
+    <a href="https://testnet.tonviewer.com/EQC_m634GEbepPiq-akl9LlV4UU48H93UzdAdwiio1phmzjA">Testnet Proof</a>
+  </p>
+  <p style="margin-top: 16px;">MIT License &middot; 2026</p>
+</footer>
+
+</body>
+</html>
