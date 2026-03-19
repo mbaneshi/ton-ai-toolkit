@@ -7,10 +7,9 @@ Managing shared funds in Telegram groups today requires trusting a single person
 
 ## Demo
 
-<!-- TODO: Replace with actual demo GIF/video before submission -->
-[Demo video coming — record by March 24]
+**Live bot:** [@ton_dao_agent_bot](https://t.me/ton_dao_agent_bot)
 
-**Live testnet proof:** [Deploy multisig + execute one real proposal and paste tonviewer link here]
+**Testnet wallet:** [EQC_m634GEbepPiq-akl9LlV4UU48H93UzdAdwiio1phmzjA](https://testnet.tonviewer.com/EQC_m634GEbepPiq-akl9LlV4UU48H93UzdAdwiio1phmzjA)
 
 ## Quick Start
 

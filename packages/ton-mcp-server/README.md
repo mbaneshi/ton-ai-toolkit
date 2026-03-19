@@ -7,10 +7,7 @@ AI agents can't interact with TON blockchain. Existing TON MCP servers are read-
 
 ## Demo
 
-<!-- TODO: Replace with actual demo GIF/video before submission -->
-[Demo video coming — record by March 24]
-
-**Live testnet proof:** [Execute ton_sign_and_send and paste tonviewer link here]
+**Testnet proof:** [EQC_m634GEbepPiq-akl9LlV4UU48H93UzdAdwiio1phmzjA](https://testnet.tonviewer.com/EQC_m634GEbepPiq-akl9LlV4UU48H93UzdAdwiio1phmzjA) — signed and sent via `ton_sign_and_send` MCP tool on TON testnet
 
 ## Quick Start
 

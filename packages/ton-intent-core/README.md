@@ -7,10 +7,7 @@ Building AI agents that interact with TON requires hand-coding transaction const
 
 ## Demo
 
-<!-- TODO: Replace with actual demo GIF before submission -->
-[Demo video coming — record by March 24]
-
-**Live testnet proof:** [Execute a transfer using the built Cell and paste tonviewer link here]
+**Testnet proof:** [EQC_m634GEbepPiq-akl9LlV4UU48H93UzdAdwiio1phmzjA](https://testnet.tonviewer.com/EQC_m634GEbepPiq-akl9LlV4UU48H93UzdAdwiio1phmzjA) — transaction built with `@ton-intent/core` and broadcast on TON testnet
 
 ## Quick Start
 
