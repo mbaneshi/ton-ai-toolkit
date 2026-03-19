@@ -1,0 +1,43 @@
+{
+  "name": "@ton-intent/core",
+  "version": "0.1.0",
+  "description": "Natural language to TON transaction builder — provider-agnostic intent parser",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "@ton/ton": ">=13.0.0",
+    "@ton/core": ">=0.50.0",
+    "@ton/crypto": ">=3.0.0"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "openai": "^4.70.0",
+    "@ton/ton": "^13.11.0",
+    "@ton/core": "^0.59.0",
+    "@ton/crypto": "^3.3.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^2.0.0"
+  },
+  "files": ["dist"],
+  "keywords": ["ton", "blockchain", "intent", "nlp", "transaction", "multisig"],
+  "license": "MIT"
+}

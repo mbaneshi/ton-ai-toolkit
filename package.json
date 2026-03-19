@@ -1,0 +1,10 @@
+{
+  "name": "ton-hackathon",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/telegram-bot",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspace=packages/ton-intent-core"
+  }
+}
